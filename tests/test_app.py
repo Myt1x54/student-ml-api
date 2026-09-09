@@ -17,13 +17,15 @@ client = TestClient(app)
 
 
 def test_health():
-    """The health endpoint reports the service as healthy."""
+    """The health endpoint reports the service as healthy with version metadata."""
     response = client.get("/health")
     assert response.status_code == 200
     data = response.json()
     assert data["status"] == "healthy"
     assert data["application"] == "student-ml-api"
-    assert "version" in data
+    # v1.1.0 reports the application and model versions separately.
+    assert data["application_version"] == "1.1.0"
+    assert data["model_version"] == "model-1"
 
 
 def test_predict_valid():
