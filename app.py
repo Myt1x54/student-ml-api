@@ -28,6 +28,11 @@ def read_version() -> str:
 
 APP_VERSION = read_version()
 
+# Identifies the ML model artifact served by this application. In a real
+# MLOps system the application version and the model version evolve
+# independently, so they are reported separately.
+MODEL_VERSION = "model-1"
+
 app = FastAPI(title=APPLICATION_NAME, version=APP_VERSION)
 
 
@@ -43,7 +48,8 @@ def health():
     return {
         "status": "healthy",
         "application": APPLICATION_NAME,
-        "version": APP_VERSION,
+        "application_version": APP_VERSION,
+        "model_version": MODEL_VERSION,
     }
 
 
