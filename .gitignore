@@ -18,3 +18,11 @@ env/
 Thumbs.db
 .idea/
 .vscode/
+
+# Node / report-build artifacts (local report generation only)
+node_modules/
+report_build/
+
+# Generated report artifacts (not part of the repo)
+*.docx
+*.pdf
